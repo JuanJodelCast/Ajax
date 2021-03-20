@@ -65,7 +65,10 @@ class TasksController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $task = Task::find($id);
+        $task->is_done = true;
+        $task->save();
+        return response()->json($task);
     }
     /**
      * Remove the specified resource from storage.
@@ -75,6 +78,7 @@ class TasksController extends Controller
      */
     public function destroy($id)
     {
-        //
+        Task::destroy($id);
+        return response()->json(["id" => $id]);
     }
 }
